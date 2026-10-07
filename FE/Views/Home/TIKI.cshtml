@@ -1,0 +1,1010 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset=" utf-8" />
+    <meta name="viewport"
+          content="width=device-width" , initial-scale="1.0">
+    <title>Chi tiết sản phẩm - TIKI</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5fa;
+            color: #27272a;
+            font-size: 14px;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-top {
+            text-align: center;
+            color: #00ab56;
+            font-size: 12px;
+            padding: 7px;
+        }
+
+        .header-main {
+            max-width: 1250px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 12px 20px;
+        }
+
+        .logo {
+            color: #0b74e5;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+            .logo span {
+                display: block;
+                font-size: 11px;
+                font-weight: normal;
+            }
+
+        .search-box {
+            flex: 1;
+            height: 42px;
+            border: 1px solid #dddde3;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+            .search-box i {
+                margin: 0 12px;
+                color: #777;
+            }
+
+            .search-box input {
+                flex: 1;
+                border: none;
+                outline: none;
+                font-size: 14px;
+            }
+
+            .search-box button {
+                height: 100%;
+                padding: 0 20px;
+                border: none;
+                border-left: 1px solid #eee;
+                background: white;
+                color: #0b74e5;
+                cursor: pointer;
+            }
+
+        .header-menu {
+            display: flex;
+            gap: 20px;
+            color: #555;
+        }
+
+            .header-menu span {
+                white-space: nowrap;
+            }
+
+            .header-menu i {
+                color: #0b74e5;
+                margin-right: 5px;
+            }
+
+        .cart {
+            position: relative;
+        }
+
+            .cart b {
+                background: red;
+                color: white;
+                border-radius: 50%;
+                font-size: 10px;
+                padding: 2px 5px;
+            }
+
+        .keywords {
+            max-width: 1250px;
+            margin: auto;
+            padding: 0 20px 10px 145px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .address {
+            max-width: 1250px;
+            margin: auto;
+            text-align: right;
+            padding: 0 20px 10px;
+            font-size: 12px;
+        }
+
+            .address i {
+                color: #0b74e5;
+            }
+
+        .commitment {
+            background: white;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 12px;
+        }
+
+            .commitment > b {
+                color: #0b74e5;
+            }
+
+            .commitment i {
+                color: #0b74e5;
+                margin-right: 4px;
+            }
+
+        .breadcrumb {
+            max-width: 1250px;
+            margin: auto;
+            padding: 15px 20px;
+            color: #808089;
+            font-size: 12px;
+        }
+
+        .product-container {
+            max-width: 1250px;
+            margin: auto;
+            background: white;
+            display: grid;
+            grid-template-columns: 35% 40% 25%;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .product-images,
+        .product-info,
+        .buy-box {
+            padding: 22px;
+        }
+
+        .product-images {
+            border-right: 1px solid #eee;
+        }
+
+        .main-product-image {
+            height: 390px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-box {
+            width: 140px;
+            height: 210px;
+            background: linear-gradient(#76395b, #f4d47c);
+            border-radius: 4px;
+            padding: 15px 8px;
+            text-align: center;
+            color: #6d254b;
+            box-shadow: 0 3px 8px rgba(0,0,0,.15);
+        }
+
+            .product-box span {
+                display: block;
+                font-size: 13px;
+            }
+
+            .product-box strong {
+                display: block;
+                margin-top: 45px;
+                font-size: 17px;
+            }
+
+            .product-box small {
+                display: block;
+                margin-top: 50px;
+            }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumb {
+            width: 55px;
+            height: 55px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #8f4264;
+        }
+
+            .thumb.active {
+                border: 2px solid #0b74e5;
+            }
+
+        .image-note {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            font-size: 12px;
+        }
+
+            .image-note i {
+                color: #0b74e5;
+            }
+
+        .labels span {
+            font-size: 10px;
+            padding: 4px 6px;
+            margin-right: 5px;
+            border-radius: 3px;
+            background: #fff0f1;
+            color: #d93843;
+            font-weight: bold;
+        }
+
+            .labels span:nth-child(2) {
+                color: #b7791f;
+                background: #fff8db;
+            }
+
+            .labels span:nth-child(3) {
+                color: #0b74e5;
+                background: #eaf4ff;
+            }
+
+        .brand {
+            margin: 12px 0 5px;
+            font-size: 12px;
+        }
+
+            .brand a {
+                color: #0b74e5;
+                text-decoration: none;
+            }
+
+        .product-info h1 {
+            font-size: 22px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 12px;
+        }
+
+            .rating i {
+                color: #ffc400;
+            }
+
+            .rating span {
+                color: #777;
+                margin-left: 5px;
+            }
+
+            .rating .sold {
+                padding-left: 10px;
+                border-left: 1px solid #ddd;
+            }
+
+        .made {
+            font-size: 12px;
+            color: #777;
+            margin-top: 8px;
+        }
+
+        .price {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 15px 0 25px;
+        }
+
+            .price sup {
+                font-size: 18px;
+                text-decoration: underline;
+            }
+
+        .flavour p {
+            margin-bottom: 10px;
+        }
+
+        .flavour button {
+            background: white;
+            border: 2px solid #0b74e5;
+            color: #0b74e5;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .shipping {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+            .shipping h3,
+            .service h3 {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+        .shipping-address {
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+            .shipping-address a,
+            .service a {
+                color: #0b74e5;
+                text-decoration: none;
+                float: right;
+            }
+
+        .shipping-item {
+            display: flex;
+            gap: 12px;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+            .shipping-item i {
+                color: #0b74e5;
+                width: 20px;
+            }
+
+            .shipping-item p {
+                margin-top: 5px;
+                color: #777;
+            }
+
+        .service {
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+            .service div {
+                padding: 10px 0;
+                font-size: 12px;
+            }
+
+            .service i {
+                color: #0b74e5;
+                margin-right: 10px;
+            }
+
+        .buy-box {
+            border-left: 1px solid #eee;
+        }
+
+        .seller {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seller-logo {
+            background: #0b74e5;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .seller p {
+            font-size: 11px;
+            margin-top: 5px;
+            color: #777;
+        }
+
+            .seller p i {
+                color: #ffc400;
+            }
+
+        .buy-box hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        .variant {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mini-product {
+            width: 45px;
+            height: 45px;
+            background: #f5d27c;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #8f4264;
+        }
+
+        .quantity-area {
+            margin-top: 25px;
+        }
+
+            .quantity-area p {
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+        .quantity-control {
+            display: flex;
+        }
+
+            .quantity-control button,
+            .quantity-control input {
+                width: 35px;
+                height: 32px;
+                border: 1px solid #ddd;
+                background: white;
+                text-align: center;
+            }
+
+            .quantity-control button {
+                cursor: pointer;
+            }
+
+            .quantity-control input {
+                outline: none;
+            }
+
+                /* Ẩn nút tăng giảm mặc định input number */
+                .quantity-control input::-webkit-inner-spin-button,
+                .quantity-control input::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+        .subtotal {
+            margin: 25px 0;
+        }
+
+            .subtotal p {
+                margin-bottom: 8px;
+            }
+
+            .subtotal strong {
+                font-size: 24px;
+            }
+
+        .btn {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .buy-now {
+            background: #ff424e;
+            color: white;
+            border: 1px solid #ff424e;
+        }
+
+        .add-cart,
+        .installment {
+            background: white;
+            color: #0b74e5;
+            border: 1px solid #0b74e5;
+        }
+
+        .banner {
+            margin-top: 20px;
+            background: #0875e1;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+            .banner i {
+                font-size: 35px;
+            }
+
+            .banner b,
+            .banner span {
+                display: block;
+            }
+            .main-img {
+            width: 100%;
+            max-width: 380px;
+            height: 380px;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+            }
+
+        /* RESPONSIVE */
+        @@media (max-width: 900px) {
+
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .product-images,
+            .buy-box {
+                border: none;
+            }
+
+            .header-main {
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                order: 3;
+                flex-basis: 100%;
+            }
+
+            .commitment {
+                flex-wrap: wrap;
+            }
+
+            .keywords {
+                padding-left: 20px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, Arial, Helvetica, sans-serif;
+                background: #f5f5fa;
+                color: #27272a;
+                font-size: 14px;
+            }
+
+            @@media (max-width: 900px) {}
+                .product-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .product-images,
+                .buy-box {
+                    border: none;
+                }
+
+                .header-main {
+                    flex-wrap: wrap;
+                }
+
+                .search-box {
+                    order: 3;
+                    flex-basis: 100%;
+                }
+
+                .commitment {
+                    flex-wrap: wrap;
+                }
+
+                .keywords {
+                    padding-left: 20px;
+                }
+
+                .main-img {
+                width: 100%;
+                max-width: 380px;
+                height: 380px;
+                object-fit: contain;
+            }
+            }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+            <div class="header-top">
+                Freeship đơn từ 45k, giảm nhiều hơn cùng <b>FREESHIP</b>
+            </div>
+
+            <div class="header-main">
+
+                <div class="logo">
+                    TIKI
+                    <span>Tốt & Nhanh</span>
+                </div>
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+
+                    <input type="text"
+                           placeholder="Freeship đơn từ 45k">
+
+                    <button>Tìm kiếm</button>
+                </div>
+
+                <div class="header-menu">
+                    <span>
+                        <i class="fas fa-home"></i>
+                        Trang chủ
+                    </span>
+
+                    <span>
+                        <i class="far fa-smile"></i>
+                        Tài khoản
+                    </span>
+
+                    <span class="cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <b>0</b>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="keywords">
+                điện gia dụng &nbsp;
+                xe cộ &nbsp;
+                mẹ & bé &nbsp;
+                khỏe đẹp &nbsp;
+                nhà cửa &nbsp;
+                sách &nbsp;
+                thể thao &nbsp;
+                ensure &nbsp;
+                ensure gold
+            </div>
+
+            <div class="address">
+                <i class="fas fa-map-marker-alt"></i>
+                Giao đến:
+                <u>Q.1, P. Bến Nghé, Hồ Chí Minh</u>
+            </div>
+
+        </header>
+
+
+        <!-- CAM KẾT -->
+        <section class="commitment">
+
+            <b>Cam kết</b>
+
+            <span>
+                <i class="fas fa-check-circle"></i>
+                100% hàng thật
+            </span>
+
+            <span>
+                <i class="fas fa-undo"></i>
+                Hoàn 200% nếu hàng giả
+            </span>
+
+            <span>
+                <i class="fas fa-box"></i>
+                30 ngày đổi trả
+            </span>
+
+            <span>
+                <i class="fas fa-truck"></i>
+                Giao nhanh 2h
+            </span>
+
+            <span>
+                <i class="fas fa-tags"></i>
+                Giá siêu rẻ
+            </span>
+
+        </section>
+
+
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb">
+            Trang chủ &gt; Đồ Chơi - Mẹ & Bé &gt; Dinh dưỡng cho người lớn
+            &gt; Lon Sữa Glucerna 800g/lon
+        </div>
+
+
+        <!-- NỘI DUNG SẢN PHẨM -->
+        <main class="product-container">
+
+            <!-- CỘT HÌNH ẢNH -->
+            <section class="product-images">
+
+  
+
+                    <div class="thumbnail-list">
+
+                        <div class="thumb active">
+                            <img src="@Url.Content("~/images/sua nen trang.jpg")"
+                                 alt="Sữa Glucerna" />
+                        </div>
+
+                        <div class="thumb">
+                            <img src="@Url.Content("~/images/sua mat truoc.jpg")"
+                                 alt="Mặt trước" />
+                        </div>
+
+                        <div class="thumb">
+                            <img src="@Url.Content("~/images/sua mat ngang.jpg")"
+                                 alt="Mặt ngang" />
+                        </div>
+
+                        <div class="thumb">
+                            <img src="@Url.Content("~/images/sua mat sau.jpg")"
+                                 alt="Mặt sau" />
+                        </div>
+
+                    </div>
+
+            </section>
+
+
+            <!-- CỘT THÔNG TIN -->
+            <section class="product-info">
+
+                <div class="labels">
+                    <span>TOP DEAL</span>
+                    <span>30 NGÀY ĐỔI TRẢ</span>
+                    <span>CHÍNH HÃNG</span>
+                </div>
+
+                <p class="brand">
+                    Thương hiệu:
+                    <a href="#">Glucerna</a>
+                </p>
+
+                <h1>
+                    Lon Sữa Glucerna 800g/lon - Tặng 2 gói dùng thử
+                </h1>
+
+                <div class="rating">
+                    <b>5.0</b>
+
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+
+                    <span>(11)</span>
+
+                    <span class="sold">
+                        Đã bán 436
+                    </span>
+                </div>
+
+                <p class="made">
+                    Made in Spain
+                </p>
+
+                <div class="price">
+                    1.034.550<sup>đ</sup>
+                </div>
+
+                <div class="flavour">
+                    <p>Hương vị</p>
+                    <button>Vani</button>
+                </div>
+
+
+                <!-- VẬN CHUYỂN -->
+                <div class="shipping">
+
+                    <h3>Thông tin vận chuyển</h3>
+
+                    <div class="shipping-address">
+                        Giao đến Q.1, P. Bến Nghé, Hồ Chí Minh
+                        <a href="#">Đổi</a>
+                    </div>
+
+                    <div class="shipping-item">
+                        <i class="fas fa-shipping-fast"></i>
+
+                        <div>
+                            <b>Giao siêu tốc 2h</b>
+                            <p>Trước 11h hôm nay</p>
+                        </div>
+                    </div>
+
+                    <div class="shipping-item">
+                        <i class="fas fa-truck"></i>
+
+                        <div>
+                            <b>Giao đúng sáng mai</b>
+                            <p>8h - 12h</p>
+                        </div>
+                    </div>
+
+                    <div class="shipping-item">
+                        <i class="fas fa-leaf"></i>
+
+                        <div>
+                            Freeship 10k đơn từ 45k
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- DỊCH VỤ -->
+                <div class="service">
+                    <h3>Dịch vụ bổ sung</h3>
+
+                    <div>
+                        <i class="fas fa-credit-card"></i>
+                        Ưu đãi đến 600k với thẻ TikiCard
+                        <a href="#">Đăng ký</a>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-wallet"></i>
+                        Mua trước trả sau
+                        <a href="#">Đăng ký</a>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- CỘT MUA HÀNG -->
+            <aside class="buy-box">
+
+                <div class="seller">
+                    <div class="seller-logo">
+                        TIKI
+                    </div>
+
+                    <div>
+                        <b>Tiki Trading</b>
+                        <p>
+                            <i class="fas fa-star"></i>
+                            4.7 | 5.5tr+ đánh giá
+                        </p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="variant">
+                    <div class="mini-product">
+                        <i class="fas fa-box"></i>
+                    </div>
+
+                    <span>Vani</span>
+                </div>
+
+
+                <!-- SỐ LƯỢNG -->
+                <div class="quantity-area">
+
+                    <p>Số lượng</p>
+
+                    <div class="quantity-control">
+
+                        <button onclick="giamSoLuong()">
+                            <i class="fas fa-minus"></i>
+                        </button>
+
+                        <input type="number"
+                               id="soLuong"
+                               value="1"
+                               min="1"
+                               oninput="tinhTamTinh()">
+
+                        <button onclick="tangSoLuong()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TẠM TÍNH -->
+                <div class="subtotal">
+
+                    <p>Tạm tính</p>
+
+                    <strong id="tamTinh">
+                        1.034.550đ
+                    </strong>
+
+                </div>
+
+
+                <!-- BUTTON -->
+                <button class="btn buy-now">
+                    Mua ngay
+                </button>
+
+                <button class="btn add-cart">
+                    Thêm vào giỏ
+                </button>
+
+                <button class="btn installment">
+                    Mua trước trả sau
+                </button>
+
+                <div class="banner">
+                    <i class="fas fa-mobile-alt"></i>
+
+                    <div>
+                        <b>ĐIỆN MÁY</b>
+                        <span>Giá Tốt Chốt Ngay!</span>
+                    </div>
+                </div>
+
+            </aside>
+
+        </main>
+
+
+        <script>
+            // Giá sản phẩm
+        const giaSanPham = 1034550;
+
+        function tinhTamTinh() {
+            let soLuong =
+                parseInt(document.getElementById("soLuong").value);
+
+            if (isNaN(soLuong) || soLuong < 1) {
+                soLuong = 1;
+                document.getElementById("soLuong").value = 1;
+            }
+
+            let tamTinh = soLuong * giaSanPham;
+
+            document.getElementById("tamTinh").innerText =
+                tamTinh.toLocaleString("vi-VN") + "đ";
+        }
+
+        function tangSoLuong() {
+            let input = document.getElementById("soLuong");
+            input.value = parseInt(input.value) + 1;
+            tinhTamTinh();
+        }
+
+        function giamSoLuong() {
+            let input = document.getElementById("soLuong");
+            let soLuong = parseInt(input.value);
+
+            if (soLuong > 1) {
+                input.value = soLuong - 1;
+            }
+
+            tinhTamTinh();
+        }
+        </script>
+        
+
+</body>
+</html>
+
+   
+
